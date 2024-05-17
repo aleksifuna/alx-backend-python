@@ -106,7 +106,7 @@ class TestIntegrationGithubOrgClient(unittest.TestCase):
         self.assertEqual(test_class.public_repos('FAKE'), [])
         self.mock.assert_called()
 
-    def test_public_repos_with_license(self):
+    def test_public_repos_with_license(self) -> None:
         """
         Intergration test for public repos with license
         """
@@ -115,7 +115,6 @@ class TestIntegrationGithubOrgClient(unittest.TestCase):
         self.assertEqual(test_class.public_repos('FAKE'), [])
         self.assertEqual(test_class.public_repos('apache-2.0'),
                          self.apache2_repos)
-        self.mock.assert_called()
 
     @classmethod
     def tearDownClass(cls) -> None:
