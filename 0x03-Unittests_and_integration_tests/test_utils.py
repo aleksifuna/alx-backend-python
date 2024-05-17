@@ -17,7 +17,7 @@ class TestAccessNestedMap(unittest.TestCase):
     ])
     def test_access_nested_map(self,
                                nested_map: Dict,
-                               path: Tuple,
+                               path: Tuple[str],
                                expected: Union[Dict, int]
                                ) -> None:
         """Tests the access nested map function"""
