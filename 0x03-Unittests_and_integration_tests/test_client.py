@@ -108,7 +108,7 @@ class TestIntegrationGithubOrgClient(unittest.TestCase):
 
     def test_public_repos_with_license(self):
         """
-        Intergration terst for public repos with license
+        Intergration test for public repos with license
         """
         test_class = GithubOrgClient('google')
         self.assertEqual(test_class.public_repos(), self.expected_repos)
