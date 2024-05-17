@@ -67,7 +67,8 @@ class TestGithubOrgClient(unittest.TestCase):
         """
         Test has_license method returns expected results
         """
-        license = GithubOrgClient.has_license(repo, license_key)
+        test_class = GithubOrgClient('google')
+        license = test_class.has_license(repo, license_key)
         self.assertEqual(license, results)
 
 
