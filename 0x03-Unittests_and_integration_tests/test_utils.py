@@ -36,6 +36,11 @@ class TestAccessNestedMap(unittest.TestCase):
             access_nested_map(nested_map, path)
         self.assertEqual(f"KeyError('{expected}')", repr(e.exception))
 
+
+class TestGetJson(unittest.TestCase):
+    """
+    Test class for get_json function
+    """
     @parameterized.expand([
         ("http://example.com", {"payload": True}),
         ("http://holberton.io", {"payload": False})
@@ -52,7 +57,7 @@ class TestAccessNestedMap(unittest.TestCase):
 
 class TestMemoize(unittest.TestCase):
     """
-    Test class for momoize wrapper function
+    Test class for memoize wrapper function
     """
 
     def test_memoize(self):
