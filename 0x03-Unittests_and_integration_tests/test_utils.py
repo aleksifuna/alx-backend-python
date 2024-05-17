@@ -48,7 +48,7 @@ class TestAccessNestedMap(unittest.TestCase):
         patcher = patch('requests.get', **config)
         mock = patcher.start()
         self.assertEqual(get_json(test_url), test_payload)
-        mock.assert_called_once()
+        mock.assert_called_once_with(test_url)
         patcher.stop()
 
 
