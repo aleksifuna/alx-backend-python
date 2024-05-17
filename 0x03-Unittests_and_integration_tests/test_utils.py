@@ -72,8 +72,11 @@ class TestMemoize(unittest.TestCase):
             def a_property(self):
                 return self.a_method()
 
-        with patch.object(TestClass, 'a_method') as mocked_attr:
+        with patch.object(TestClass,
+                          'a_method',
+                          return_value=lambda: 42
+                          ) as mocked_attr:
             test_class = TestClass()
-            test_class.a_property()
-            test_class.a_property()
+            self.assertEqual(test_class.a_property(), 42)
+            self.assertEqual(test_class.a_property(), 42)
             mocked_attr.assert_called_once()
