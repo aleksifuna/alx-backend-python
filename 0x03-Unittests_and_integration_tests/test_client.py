@@ -15,18 +15,21 @@ class TestGithubOrgClient(unittest.TestCase):
     """
 
     @parameterized.expand([
-        ('google'),
-        ('abc')
+        ('google', {'name': 'Google.com'}),
+        ('abc', {'name': 'abc.com'})
     ])
     @patch('client.get_json')
-    def test_org(self, input, mock):
+    def test_org(self, input, output, mock_get_json):
         """
         Tests that get_json was called once with expected arguments
         """
+        mock_get_json.return_value = output
         test_class = GithubOrgClient(input)
-        test_class.org()
-        test_class.org()
-        mock.assert_called_once_with(f'https://api.github.com/orgs/{input}')
+        test_class.org
+        self.assertEqual(test_class.org, output)
+        mock_get_json.assert_called_once_with(
+            f'https://api.github.com/orgs/{input}'
+            )
 
     def test_public_repos_url(self):
         """
@@ -51,7 +54,8 @@ class TestGithubOrgClient(unittest.TestCase):
 
         with patch('client.GithubOrgClient._public_repos_url',
                    new_callable=PropertyMock) as mock_pub_repos_url:
-            mock_pub_repos_url.return_value = 'Hello World'
+            url = "https://api.github.com/users/google/repos"
+            mock_pub_repos_url.return_value = url
             test_class = GithubOrgClient('test')
             public_repos = test_class.public_repos()
             expected = [item['name'] for item in payload]
