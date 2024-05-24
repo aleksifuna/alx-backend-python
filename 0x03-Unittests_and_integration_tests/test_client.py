@@ -7,6 +7,7 @@ from fixtures import TEST_PAYLOAD
 from parameterized import parameterized, parameterized_class
 import unittest
 from unittest.mock import patch, PropertyMock, MagicMock
+from typing import Dict
 
 
 class TestGithubOrgClient(unittest.TestCase):
@@ -19,7 +20,12 @@ class TestGithubOrgClient(unittest.TestCase):
         ('abc', {'name': 'abc.com'})
     ])
     @patch('client.get_json')
-    def test_org(self, input, output, mock_get_json):
+    def test_org(
+        self,
+        input: str,
+        output: Dict,
+        mock_get_json: MagicMock
+    ) -> None:
         """
         Tests that get_json was called once with expected arguments
         """
