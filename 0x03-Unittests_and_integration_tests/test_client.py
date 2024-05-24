@@ -6,7 +6,7 @@ from client import GithubOrgClient
 from fixtures import TEST_PAYLOAD
 from parameterized import parameterized, parameterized_class
 import unittest
-from unittest.mock import patch, PropertyMock
+from unittest.mock import patch, PropertyMock, MagicMock
 
 
 class TestGithubOrgClient(unittest.TestCase):
@@ -23,10 +23,10 @@ class TestGithubOrgClient(unittest.TestCase):
         """
         Tests that get_json was called once with expected arguments
         """
-        mock_get_json.return_value = output
+        mock_get_json.return_value = MagicMock(return_value=output)
         test_class = GithubOrgClient(input)
-        test_class.org
-        self.assertEqual(test_class.org, output)
+        test_class.org()
+        self.assertEqual(test_class.org(), output)
         mock_get_json.assert_called_once_with(
             f'https://api.github.com/orgs/{input}'
             )
