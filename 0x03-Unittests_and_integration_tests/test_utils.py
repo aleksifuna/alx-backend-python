@@ -1,4 +1,7 @@
 #!/usr/bin/env python3
+"""
+utils test classes module
+"""
 import unittest
 from parameterized import parameterized
 from utils import access_nested_map, get_json, memoize
@@ -60,7 +63,7 @@ class TestMemoize(unittest.TestCase):
     Test class for memoize wrapper function
     """
 
-    def test_memoize(self):
+    def test_memoize(self) -> None:
         """
         Tests memoize wrapper function
         """
